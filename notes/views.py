@@ -1,5 +1,10 @@
 from django.shortcuts import render, HttpResponse # type: ignore
+from . models import Note
 
-# Create your views here.
+
 def home(request):
-    return HttpResponse("Hello, world. You're at the notes home.")
+    notes=Note.objects.all().order_by('created_at')
+    return render(request,'home.html',{"notes":notes})
+
+def about(request):
+    return HttpResponse("About" )

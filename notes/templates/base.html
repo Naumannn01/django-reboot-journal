@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Journal{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h2>📝 My Journal</h2>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- content goes here -->
+        {% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Home -- My Journal {% endblock %}
+{% block content %}
+  <h1>Welcome to your journal 🚀</h1>
+  {% for note in notes %}
+    <div>
+        <h2>{{ note.title }}</h2>
+        <p>{{ note.body }}</p>
+        <small>{{note.created_at}}</small>
+    <hr>
+    </div>
+{% empty %}
+         <p>No notes yet</p>
+  {% endfor %}
+
+{% endblock %}
+
+
+
