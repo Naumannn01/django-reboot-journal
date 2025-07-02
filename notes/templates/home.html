@@ -2,17 +2,22 @@
 {% block title %}Home -- My Journal {% endblock %}
 {% block content %}
   <h1>Welcome to your journal 🚀</h1>
-  {% for note in notes %}
-    <div>
-        <h2>{{ note.title }}</h2>
-        <p>{{ note.body }}</p>
-        <small>{{note.created_at}}</small>
-    <hr>
-    </div>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit">Add Note</button>
+  </form>
+<hr>
+{% for note in notes %}
+  <div>
+      <h2>{{ note.title }}</h2>
+      <p>{{ note.content }}</p>
+      <small>{{ note.created_at }}</small>
+      <hr>
+  </div>
 {% empty %}
-         <p>No notes yet</p>
-  {% endfor %}
-
+  <p>No notes yet</p>
+{% endfor %}
 {% endblock %}
 
 
