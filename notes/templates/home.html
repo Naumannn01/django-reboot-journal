@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Home -- My Journal {% endblock %}
 {% block content %}
+
+{% if messages %}
+<ul>
+     {% for message in messages %}
+     <li style="background: #d4edda; padding: 10px; border-radius: 4px; color: #155724; margin-bottom: 20px;">
+        {{ message }}
+      </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+
   <h1>Welcome to your journal 🚀</h1>
   <form method="POST">
     {% csrf_token %}
