@@ -21,12 +21,16 @@
   </form>
 <hr>
 {% for note in notes %}
-  <div>
-      <h2>{{ note.title }}</h2>
-      <p>{{ note.content }}</p>
-      <small>{{ note.created_at }}</small>
-      <hr>
+<div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.05); margin-bottom: 20px;">
+    <h2>{{ note.title }}</h2>
+    <p>{{ note.content }}</p>
+    <small>{{ note.created_at }}</small>
+    <form action="{% url 'delete_note' note.id %}" method="POST" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" style="color: rgb(255, 255, 255); margin-left: 10px;">Delete</button>
+    </form>
   </div>
+  
 {% empty %}
   <p>No notes yet</p>
 {% endfor %}
