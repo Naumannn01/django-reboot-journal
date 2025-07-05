@@ -21,6 +21,20 @@ def home(request):
         form=NoteForm()
     return render(request,'home.html',{'form':form,"notes":notes})
 
+def edit_note(request,note_id):
+    note=get_object_or_404(Note,id=note_id)
+
+    if request.method=="POST":
+        form=NoteForm(request.POST,instance=note)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Note updated successfully")
+            return redirect('home')
+    else:
+        form=NoteForm(instance=note)
+    return render(request,'edit.html',{'form':form,'note':note})
+
+
 def delete_note(request,note_id):
     note=get_object_or_404(Note, id=note_id)
     note.delete()

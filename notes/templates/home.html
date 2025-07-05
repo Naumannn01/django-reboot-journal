@@ -27,6 +27,7 @@
     <small>{{ note.created_at }}</small>
     <form action="{% url 'delete_note' note.id %}" method="POST" style="display:inline;">
       {% csrf_token %}
+      <a href="{% url 'edit_note' note.id %}" style="margin-left: 10px; color: blue;">Edit</a>
       <button type="submit" style="color: rgb(255, 255, 255); margin-left: 10px;">Delete</button>
     </form>
   </div>
