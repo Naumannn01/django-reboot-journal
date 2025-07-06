@@ -27,15 +27,24 @@
     <small>{{ note.created_at }}</small>
     <form action="{% url 'delete_note' note.id %}" method="POST" style="display:inline;">
       {% csrf_token %}
-      <a href="{% url 'edit_note' note.id %}" style="margin-left: 10px; color: blue;">Edit</a>
       <button type="submit" style="color: rgb(255, 255, 255); margin-left: 10px;">Delete</button>
     </form>
+      <a href="{% url 'edit_note' note.id %}" style="margin-left: 10px; color: blue;">Edit</a>
   </div>
   
 {% empty %}
   <p>No notes yet</p>
 {% endfor %}
 {% endblock %}
+<div>
+  {% if page_obj.has_previous %}
+  <a href="?page{{ page_obj.previous_page_number}} "> ← Previous</a>
+  {% endif %}
+  <span>Page {{page_obj.number}} of {{page_obj.paginator.num_pages}} </span>
+  {% if page_obj.has_next %}
+  <a href="?page={{page_obj.next_page_number}}">Next</a>
+  {% endif %}
+</div>
 
 
 
