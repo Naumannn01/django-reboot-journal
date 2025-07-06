@@ -20,7 +20,7 @@
     <button type="submit">Add Note</button>
   </form>
 <hr>
-{% for note in notes %}
+{% for note in page_obj %}
 <div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.05); margin-bottom: 20px;">
     <h2>{{ note.title }}</h2>
     <p>{{ note.content }}</p>
@@ -31,12 +31,14 @@
     </form>
       <a href="{% url 'edit_note' note.id %}" style="margin-left: 10px; color: blue;">Edit</a>
   </div>
+
   
 {% empty %}
   <p>No notes yet</p>
+
+
 {% endfor %}
-{% endblock %}
-<div>
+  <div>
   {% if page_obj.has_previous %}
   <a href="?page{{ page_obj.previous_page_number}} "> ← Previous</a>
   {% endif %}
@@ -45,6 +47,8 @@
   <a href="?page={{page_obj.next_page_number}}">Next</a>
   {% endif %}
 </div>
+{% endblock %}
+
 
 
 
