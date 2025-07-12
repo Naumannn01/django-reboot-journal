@@ -28,6 +28,8 @@ urlpatterns = [
     path('login/',auth_views.LoginView.as_view(template_name='login.html'),name='login'),
     path('logout/', notes_views.logout_view, name='logout'),
 
- path('signup/',notes_views.signup,name='signup'),
+    path('signup/',notes_views.signup,name='signup'),
+    path('revision/',include('revision.urls')),
+
 ]
 

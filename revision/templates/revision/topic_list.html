@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Revision Tracker{% endblock %}
+
+{% block content %}
+<h2>📘 Revision Journal</h2>
+
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li style="color: green;">{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Topic</button>
+</form>
+
+<hr>
+
+{% for topic in page_obj %}
+  <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ddd;">
+    <h3>{{ topic.title }} {% if topic.reviewed %}<span style="color: green;">✔</span>{% endif %}</h3>
+    <p><strong>Subject:</strong> {{ topic.subject }}</p>
+    <p>{{ topic.content }}</p>
+    <small>Added on {{ topic.created_at }}</small>
+  </div>
+{% empty %}
+  <p>No topics added yet.</p>
+{% endfor %}
+
+<div style="margin-top: 20px;">
+  {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">← Previous</a>
+  {% endif %}
+  <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Next →</a>
+  {% endif %}
+</div>
+{% endblock %}
